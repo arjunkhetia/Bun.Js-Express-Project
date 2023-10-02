@@ -8,12 +8,16 @@ import helmet from 'helmet';
 import ON_DEATH from 'death';
 import favicon from 'serve-favicon';
 import { create } from 'express-handlebars';
+import { LoggerUtil } from './utilities/logger';
+import { DataLogger } from './utilities/datalogger';
 
 // Defining routes
 import { routes } from './routes';
 
 const app = express();
 const port = 3000;
+const loggerUtil = new LoggerUtil();
+const dataLogger = new DataLogger();
 
 // Linking log folder and ensure directory exists
 var logDirectory = path.join(__dirname, 'log');
@@ -60,6 +64,9 @@ app.use(morgan('dev'));
 app.use(morgan(':remote-addr :remote-user :datetime :req[header] :method :url HTTP/:http-version :status :res[content-length] :res[header] :response-time[digits] :referrer :user-agent', {
   stream: rotatingLogStream
 }));
+
+// uncomment to redirect global console object to log file
+// dataLogger.logfile();
 
 // compress all responses
 app.use(compression());
