@@ -6,6 +6,7 @@ import fs from 'fs';
 import fsr from 'file-stream-rotator';
 import helmet from 'helmet';
 import ON_DEATH from 'death';
+import favicon from 'serve-favicon';
 
 // Defining routes
 import { routes } from './routes';
@@ -58,6 +59,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Linking routes
 app.use('/', routes);
