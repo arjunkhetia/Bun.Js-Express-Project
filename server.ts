@@ -75,6 +75,37 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // Linking routes
 app.use('/', routes);
 
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  next(err);
+});
+
+// error handler
+app.use(function(err: any, req: any, res: any, next: any) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  res.status(err.status || 500);
+  // uncomment to just send error as JSON
+  res.send({"message":"404 Page Not Found..!"});
+  // uncomment to render the error page
+  // res.render('error');
+});
+
+// globally catching unhandled promise rejections
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at promise '+promise+' reason ', reason);
+  console.log('Server is still running...\n');
+});
+
+// globally catching unhandled exceptions
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception is thrown with ',error+'\n');
+  process.exit();
+});
+
 /**
 * Event listener for HTTP server "close" event.
 * It sets the callback on SIGINT, SIGQUIT & SIGTERM.
