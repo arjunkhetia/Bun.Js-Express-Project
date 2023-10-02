@@ -7,6 +7,7 @@ import fsr from 'file-stream-rotator';
 import helmet from 'helmet';
 import ON_DEATH from 'death';
 import favicon from 'serve-favicon';
+import { create } from 'express-handlebars';
 
 // Defining routes
 import { routes } from './routes';
@@ -20,6 +21,16 @@ fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 fs.appendFile('./log/ServerData.log', '', function (err) {
   if (err) throw err;
 });
+
+// view engine setup - Express-Handlebars
+const hbs = create({
+  extname: '.hbs',
+  defaultLayout: 'layout',
+  layoutsDir: __dirname + '/views/'
+});
+app.engine('hbs', hbs.engine);
+app.set('view engine', '.hbs');
+app.set('views', path.join(__dirname, 'views'));
 
 // Create a rotating write stream
 var rotatingLogStream = fsr.getStream({

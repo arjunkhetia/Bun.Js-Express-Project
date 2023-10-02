@@ -3,5 +3,5 @@ import { Router, Request, Response } from "express";
 export const indexRoute = Router();
 
 indexRoute.get("/", (req: Request, res: Response) => {
-  res.send("API response.");
+  res.render('index', { title: 'Bun.js Express Server' });
 });
