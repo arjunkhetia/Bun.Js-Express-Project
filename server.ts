@@ -4,6 +4,7 @@ import path from 'path';
 import morgan from "morgan";
 import fs from 'fs';
 import fsr from 'file-stream-rotator';
+import helmet from 'helmet';
 
 // Defining routes
 import { routes } from './routes';
@@ -50,6 +51,9 @@ app.use(morgan(':remote-addr :remote-user :datetime :req[header] :method :url HT
 // compress all responses
 app.use(compression());
 
+// Helmet helps for securing Express apps by setting various HTTP headers
+app.use(helmet());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -58,5 +62,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}...`);
+  console.log('Bun.js-Express-Server Started on http://localhost:'+port+'\n');
 });
