@@ -1,0 +1,16 @@
+{
+    "keepSettings": {
+        "type": 2,
+        "amount": 10
+    },
+    "auditFilename": "/Users/arjunkhetia/Documents/GitHub/Bun.Js-Express-Project/log/audit.json",
+    "hashType": "md5",
+    "extension": ".log",
+    "files": [
+        {
+            "date": 1696245664110,
+            "name": "/Users/arjunkhetia/Documents/GitHub/Bun.Js-Express-Project/log/Server.2023-10-02.0.log",
+            "hash": "4462e1f03f2f160d6e95f698602bb0a4"
+        }
+    ]
+}
