@@ -1,20 +1,27 @@
 {
   "compilerOptions": {
+    // enable latest features
     "lib": ["ESNext"],
     "module": "esnext",
     "target": "esnext",
+    // if TS 5.x+
     "moduleResolution": "bundler",
     "moduleDetection": "force",
     "allowImportingTsExtensions": true,
     "noEmit": true,
+    // if TS 4.x or earlier
+    // "moduleResolution": "nodenext",
+    // best practices
     "composite": true,
     "strict": true,
     "downlevelIteration": true,
     "skipLibCheck": true,
-    "jsx": "react-jsx",
+    "jsx": "react-jsx", // support JSX
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
+    "allowJs": true, // allow importing `.js` from `.ts`
+    "esModuleInterop": true, // allow default imports for CommonJS modules
+    // add Bun type definitions
     "types": [
       "bun-types" // add Bun global
     ]

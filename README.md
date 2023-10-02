@@ -1,4 +1,4 @@
-# bun.js-express-project
+# Bun.js + Express Project
 
 To install dependencies:
 
