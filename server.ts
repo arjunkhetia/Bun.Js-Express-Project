@@ -5,6 +5,7 @@ import morgan from "morgan";
 import fs from 'fs';
 import fsr from 'file-stream-rotator';
 import helmet from 'helmet';
+import ON_DEATH from 'death';
 
 // Defining routes
 import { routes } from './routes';
@@ -60,6 +61,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Linking routes
 app.use('/', routes);
+
+/**
+* Event listener for HTTP server "close" event.
+* It sets the callback on SIGINT, SIGQUIT & SIGTERM.
+*/
+ON_DEATH((signal) => {
+  console.log('\nServer is going down now...');
+  process.exit();
+});
 
 app.listen(port, () => {
   console.log('Bun.js-Express-Server Started on http://localhost:'+port+'\n');
